@@ -1,0 +1,43 @@
+from django.db import models
+from django.contrib.auth.models import User
+from datetime import datetime
+
+# Create your models here
+
+class profil(models.Model):
+    nama        =models.OneToOneField(User, on_delete=models.CASCADE, related_name='profil')
+    nip         =models.CharField(max_length=50)
+    jk =(
+        ('Laki-Laki','L'),
+        ('Perempuan','P'),
+    )
+    jenisK      =models.CharField(choices=jk, max_length=10)
+    jabatan     =models.CharField(max_length=50,null=True)
+    alamat      =models.TextField(default='-')
+    
+
+    def __str__(self):
+        return "{}".format(self.nama)
+
+class absenModel(models.Model):
+    # data karyawan    
+    pegawai     =models.ForeignKey(profil, on_delete=models.CASCADE, auto_created=True)
+    tgl         =models.DateField(auto_now_add=True)
+    waktu       =models.TimeField(auto_now_add=True)
+    absen=(
+        ('HADIR','HADIR'),
+        ('TIDAK HADIR','TIDAK HADIR'),
+        ('IZIN','IZIN'),
+        ('PULANG','PULANG'),
+    )
+    status      =models.CharField(choices=absen, max_length=50, default='TIDAK HADIR')
+    ket         =models.TextField(null=True, blank=True)  
+
+    def cekabsen(self):
+        if self.waktu >= '7.31' and self.waktu<='13.00':
+           self.status = 'TERLAMBAT'
+        return self.status
+            
+    def __str__(self):
+        return "{},{}".format(self.pegawai,self.status)
+
