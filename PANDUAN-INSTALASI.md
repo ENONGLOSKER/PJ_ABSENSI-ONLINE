@@ -8,8 +8,9 @@ absensi online
 4. buat virtual env dengan cara: python -m venv env
 5. aktivkan env dengan cara: env\scripts\activate
 6. masuk ke folder project1\absens
-7. jalankan project dengan cara: python manage.py runserver
-8. beres
+7. install requirementsnya dengan cara: pip install -r requirements.txt
+8. jalankan project dengan cara: python manage.py runserver
+9. beres
 
 - untuk testing sebagai user/karyawan bisa langsung register -> login -> isi profile -> absen
 - untuk login sebagai admin buka alamat berikut http://localhost:8000/admin kemudian login dengan
