@@ -13,8 +13,9 @@ def absen(request):
     ab = absenForm(request.POST or None)
     if request.method == 'POST':
         if ab.is_valid():
-            ab.save()
+            ab.save()  
         return redirect('akun')
+        
     context = {
         'profile':ab,
         'datas':data,
@@ -61,7 +62,11 @@ def loginAkun(request):
         user=authenticate(request,username=username,password=pass1)
         if user is not None:
             login(request, user)
-            return redirect('absen:profile')
+            if user.is_superuser:
+                return redirect('/admin/')
+            else:
+                return redirect('absen:profile')
+                
         else:
             return HttpResponse ("Username or Password is incorrect!!!")
     return render(request,'login.html')

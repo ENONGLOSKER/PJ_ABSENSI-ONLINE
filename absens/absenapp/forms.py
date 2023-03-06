@@ -35,9 +35,6 @@ class profilForm(forms.ModelForm):
                 ),
             }
 
-
-
-
 class absenForm(forms.ModelForm):
     class Meta:
         model = absenModel
@@ -49,6 +46,7 @@ class absenForm(forms.ModelForm):
         widgets={
             'pegawai':forms.Select(
                 attrs={
+                    'value':'{{user}}',
                     'class':'form-control',}
                 ),
             'status':forms.Select(
