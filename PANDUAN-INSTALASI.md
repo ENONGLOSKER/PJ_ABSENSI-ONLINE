@@ -17,7 +17,7 @@ absensi online
 username : ruswanti
 password : admin132
 
-untuk menjalankan kembali program 
+## untuk menjalankan kembali program 
 - buka ALAMAT/PATH folder projek tersebut di cmd
 - aktivkan virtuanl env dengan : env\scripts\activate
 - masuk folder absens dengan: cd absens
