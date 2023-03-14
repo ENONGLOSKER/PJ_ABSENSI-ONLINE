@@ -1,15 +1,18 @@
 from django import forms
 from . models import absenModel,profil
 
+# form untuk profil karyawan
 class profilForm(forms.ModelForm):
     class Meta():
-        model=profil
-        fields="__all__"
+        model=profil #nama tabel
+        fields="__all__" #ambil semu kolom
         
+        # untuk merubah/ganti nama label 
         labels= {
             'jenisK' : 'Jenis Kelamin',
         }
 
+        # untuk styling form
         widgets={
             'nama':forms.Select(
                 attrs={
@@ -35,6 +38,7 @@ class profilForm(forms.ModelForm):
                 ),
             }
 
+# form untuk absen
 class absenForm(forms.ModelForm):
     class Meta:
         model = absenModel

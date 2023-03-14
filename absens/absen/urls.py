@@ -6,6 +6,7 @@ from . import views
 from django.conf import settings 
 from django.conf.urls.static import static 
 
+#url/alamat per halaman 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index, name='home'),
