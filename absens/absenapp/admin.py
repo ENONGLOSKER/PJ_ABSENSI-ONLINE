@@ -1,7 +1,6 @@
 from django.contrib import admin
 from . models import absenModel,profil
 
-
 class absenAdmin(admin.ModelAdmin):
     readonly_fields = ['tgl','waktu'] #untuk menmpilkan kolom yang tersembunyi
     list_display = ('pegawai','status','ket','waktu','tgl') #untuk menu pencarian berdasarkan kategori
