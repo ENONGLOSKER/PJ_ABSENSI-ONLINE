@@ -1,7 +1,7 @@
 # PJ_ABSENSI-ONLINE
 absensi online
 
-## Langkah -----
+## Langkah 
 1. download (zip) project atau clone dengan git clone 
 2. pastikan sudah menginstal python, jika belum instal terlebih dahulu di https://www.python.org/downloads/
 3. setelah python terinstall, selanjutnya buka ALAMAT/PATH folder projek tersebut di cmd
@@ -13,7 +13,13 @@ absensi online
 9. beres
 
 - untuk testing sebagai user/karyawan bisa langsung register -> login -> isi profile -> absen
-- untuk login sebagai admin buka alamat berikut http://localhost:8000/admin kemudian login dengan
+- untuk login sebagai admin bisa menggunakan 
 username : ruswanti
 password : admin132
-## -------------
+
+## untuk menjalankan kembali program 
+- buka ALAMAT/PATH folder projek tersebut di cmd
+- aktivkan virtuanl env dengan : env\scripts\activate
+- masuk folder absens dengan: cd absens
+- jalankan server dengan : python manage.py runserver
+##
