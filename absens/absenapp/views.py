@@ -31,7 +31,6 @@ def profile(request):
         if karyawan.is_valid():
             karyawan.save()
         return redirect('absen:absen')
-    
 
     context = {
         'karyawan':karyawan,
