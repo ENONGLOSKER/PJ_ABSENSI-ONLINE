@@ -40,6 +40,17 @@
 
     <!-- isi -->
     <div class="container py-5 text-center container">
+      <!-- sweet alert -->
+      {%for message in messages%}
+      {% if message.tags == 'success' %}                     
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>                                            
+      <script>
+          var m="{{message}}";
+          swal("Login",m,"success");
+      </script>
+      {% endif %}
+      {%endfor%}
+
       <h1 class="fw-light">Riwayat Absensi Anda</h1> 
       <!-- jumlah -->
       <div class="container mt-3">

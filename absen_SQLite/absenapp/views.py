@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from absenapp . models import absenModel,profil
 from .forms import profilForm,absenForm
-
+from django.contrib import messages
 
 @login_required() #fungsi ini bisa diakses setelah login berhasil
 def absen(request):
@@ -23,14 +23,13 @@ def absen(request):
     }
     return render(request, 'absen.html',context)
 
-@login_required()
 def profile(request):
 
     karyawan=profilForm(request.POST or None)
     if request.method == 'POST':
         if karyawan.is_valid():
             karyawan.save()
-        return redirect('absen:absen')
+        return redirect('absen:login')
 
     context = {
         'karyawan':karyawan,
@@ -46,11 +45,13 @@ def register(request):
         pass2=request.POST.get('password2')
 
         if pass1!=pass2: #jika password/password 1 tidak sama dengan confirm password atau password ke 2
-            return HttpResponse("Mohon maaf🙏🏻..Password tidak Sama!!") 
+            messages.warning(request, 'Password tidak sama!')
+            return redirect('absen:register') #ke halaman register
         else: #jika sama password 1 dengan ke 2
             my_user=User.objects.create_user(username,email,pass1) #buat user baru dengan data username,email dan password
             my_user.save()
-            return redirect('absen:login') #ke halaman login
+            messages.success(request,"Selamat Register Berhasil")
+            return redirect('absen:profile') #ke halaman login
 
     return render(request,'register.html')
 
@@ -61,13 +62,16 @@ def loginAkun(request):
 
         user=authenticate(request,username=username,password=pass1) #cek username dan password
         if user is not None: #jika username dan password ada di database maka
-            login(request, user) #login berhasil
-            if user.is_superuser: #jika user adalah admin maka tampilkan halaman admin
+            login(request, user) 
+            
+            if user.is_superuser: #jika user adalah admin maka tampilkan halaman ad  min
                 return redirect('/admin/')
             else: #jika user bukan admin maka tampilkan halaman absen
-                return redirect('absen:profile')
+                messages.success(request,"Selamat Login Berhasil")
+                return redirect('akun')
+
         else:# jika username dan password  tidak ada
-            # return HttpResponse ("Mohon maaf🙏🏻..Username dan Password tidak Valid!!")
+            messages.warning(request,'Username dan Password tidak Valid!!')
             return redirect('absen:login') #ke halaman login
     return render(request,'login.html')
 

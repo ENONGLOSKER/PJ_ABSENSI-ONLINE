@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -137,5 +138,11 @@ JAZZMIN_SETTINGS = {
     "site_icon": "img/logo.png",
     "welcome_sign": "Absensi Online, Selamat Datang!",
      "user_avatar": "img/el.png",
-
+}
+# alert
+MESSAGE_TAGS = {
+    messages.INFO: 'info',
+    messages.ERROR : 'danger',
+    messages.SUCCESS : 'success',
+    50: 'critical',
 }

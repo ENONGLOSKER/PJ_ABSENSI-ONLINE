@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from absenapp . models import absenModel,profil
 from django.contrib.auth import authenticate
+from django.contrib import messages
 
 def akun(request):
     # ambil nama berdasarkan user yang aktif dari tabel profil -> (1 jenis data yaitu nama)
@@ -23,7 +24,6 @@ def akun(request):
             jp += 1
         else:
             pass
-
     context = {
         'datas':datas,
         'jlh_hadir':jh,

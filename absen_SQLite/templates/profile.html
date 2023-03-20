@@ -8,6 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="{%static 'css/bootstrap.css'%}" rel="stylesheet">
+
     <!-- icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     
@@ -23,7 +24,19 @@
                         <div class="col-lg-6 col-md-8 mx-auto">
                             <div class="card">
                                 <div class="card-body py-4 px-md-5" style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
-                                    <form class="my-3" method="POST" >
+
+                                  <!-- sweet alert -->
+                                  {%for message in messages%}
+                                  {% if message.tags == 'success' %}                     
+                                  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>                                            
+                                  <script>
+                                      var m="{{message}}";
+                                      swal("Register",m,"success");
+                                  </script>
+                                  {% endif %}
+                                  {%endfor%}
+
+                                  <form class="my-3" method="POST" >
                                       {%csrf_token%}
                                         <!-- 2 column grid layout with text inputs for the first and last names -->
                                         <div class="row">
@@ -55,7 +68,7 @@
                                         <!-- Register buttons -->
                                         <div class="text-center">
                                         
-                                        <p>Sudah isi profile?<a href="{%url 'absen:absen'%}" class="text-primary">Lewati</a></p>
+                                        <p>Sudah isi profile?<a href="{%url 'akun'%}" class="text-primary">Lewati</a></p>
                                         <a href="/" class="text-dark" style="text-decoration: none;">Kembali ke Halaman <span class="fw-bold">Home</span></a>
                                         </div>
                                     </form>
