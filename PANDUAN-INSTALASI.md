@@ -1,5 +1,5 @@
 # PJ_ABSENSI-ONLINE
-absensi online
+Instalasi Absensi Online
 
 ## Langkah 
 1. download (zip) project atau clone dengan git clone 
@@ -19,7 +19,14 @@ password : admin132
 
 ## untuk menjalankan kembali program 
 - buka ALAMAT/PATH folder projek tersebut di cmd
-- aktivkan virtuanl env dengan : env\scripts\activate
+- aktifkan virtuanl env dengan : env\scripts\activate
 - masuk folder absens dengan: cd absens
 - jalankan server dengan : python manage.py runserver
-##
+
+## untuk menggunakan update projek terbaru
+- git clone atau download zip
+- copas isi absen
+- kemudian paste di dalam projek sebelumnya, sejajar dengan env nya
+- kemudian aktifkan env dan jalankan seperti biasa
+
+## 
