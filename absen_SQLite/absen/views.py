@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from absenapp . models import absenModel,profil
 from django.contrib.auth import authenticate
 from django.contrib import messages
+from django.core.paginator import Paginator
 
 def akun(request):
     # ambil nama berdasarkan user yang aktif dari tabel profil -> (1 jenis data yaitu nama)
@@ -9,7 +10,7 @@ def akun(request):
 
     # ambil data pegawai berdasarkan user yang aktif (profil) dari tabel absenmodel ->(semua data)
     datas= absenModel.objects.filter(pegawai=profile)
-    
+
     # inisialiasi jumlah status: hadir,izin dan pulang
     jh=0
     ji=0
@@ -24,6 +25,13 @@ def akun(request):
             jp += 1
         else:
             pass
+
+    #paginator
+    data = datas.order_by('-tgl')
+    hal = Paginator(data,5)
+    hal_list = request.GET.get('page')
+    datas = hal.get_page(hal_list)
+
     context = {
         'datas':datas,
         'jlh_hadir':jh,

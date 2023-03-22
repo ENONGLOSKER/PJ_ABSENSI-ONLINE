@@ -46,7 +46,7 @@
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>                                            
       <script>
           var m="{{message}}";
-          swal("Login",m,"success");
+          swal("Absen",m,"success");
       </script>
       {% endif %}
       {%endfor%}
@@ -100,7 +100,7 @@
             </tr>
           </thead>
           <tbody>
-            {%for data in datas%}
+            {%for data in datas.object_list%}
             <tr>
               <td>{{forloop.counter}}</td>                      
               <td>{{data.tgl}}</td>
@@ -109,8 +109,27 @@
               <!-- <td class="text-start">{{data.ket}}</td> -->
             </tr>
             {%endfor%}
+
           </tbody>
         </table>
+        <!-- paginations -->
+        
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            {%for data in datas.paginator.page_range%}
+              {%if datas.number == data %}
+              <li class="page-item active">
+                <a class="page-link" href="{%url 'akun'%}?page={{data}}">{{data}}</a>
+              </li>
+              {%else%}
+              <li class="page-item">
+                <a class="page-link" href="{%url 'akun'%}?page={{data}}">{{data}}</a>
+              </li>
+              {%endif%}
+            {%endfor%}
+          </ul>
+        </nav>
+
       </div>
     </div>
 

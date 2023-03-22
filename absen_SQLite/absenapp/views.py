@@ -9,13 +9,16 @@ from django.contrib import messages
 @login_required() #fungsi ini bisa diakses setelah login berhasil
 def absen(request):
     data = absenModel.objects.all() #ambil semua data di tabel absenmodel
-    
     ab = absenForm(request.POST or None) #inisial request 
+
     if request.method == 'POST':
         if ab.is_valid(): #jika isi form valid
             ab.save()  #simpan semua isi form
-        return redirect('akun') #setelah disimpan, kemudian arahkan ke alamat/url akun
-        
+            messages.success(request, 'Selamat Absensi Berhasil!')
+            return redirect('akun') #setelah disimpan, kemudian arahkan ke alamat/url akun
+        else:
+            redirect('absen:absen')
+
     #lempar data yang sudah didapat ke templates
     context = { 
         'profile':ab,
@@ -67,7 +70,7 @@ def loginAkun(request):
             if user.is_superuser: #jika user adalah admin maka tampilkan halaman ad  min
                 return redirect('/admin/')
             else: #jika user bukan admin maka tampilkan halaman absen
-                messages.success(request,"Selamat Login Berhasil")
+                messages.success(request,"Selamat, Login Berhasil!")  
                 return redirect('akun')
 
         else:# jika username dan password  tidak ada
