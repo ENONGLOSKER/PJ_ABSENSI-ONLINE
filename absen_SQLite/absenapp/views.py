@@ -6,20 +6,25 @@ from absenapp . models import absenModel,profil
 from .forms import profilForm,absenForm
 from django.contrib import messages
 
-@login_required() #fungsi ini bisa diakses setelah login berhasil
+# @login_required() #fungsi ini bisa diakses setelah login berhasil
 def absen(request):
-    data = absenModel.objects.all() #ambil semua data di tabel absenmodel
-    ab = absenForm(request.POST or None) #inisial request 
 
-    if request.method == 'POST':
-        if ab.is_valid(): #jika isi form valid
-            ab.save()  #simpan semua isi form
-            messages.success(request, 'Selamat Absensi Berhasil!')
-            return redirect('akun') #setelah disimpan, kemudian arahkan ke alamat/url akun
-        else:
-            redirect('absen:absen')
+    if request.user.is_active:
+        data = absenModel.objects.all() #ambil semua data di tabel absenmodel
+        ab = absenForm(request.POST or None) #inisial request 
+        if request.method == 'POST':
+            if ab.is_valid(): #jika isi form valid
+                ab.save()  #simpan semua isi form
+                messages.success(request, 'Selamat Absensi Berhasil!')
+                return redirect('akun') #setelah disimpan, kemudian arahkan ke alamat/url akun
+            else:
+                redirect('absen:absen')
+    else:
+        return redirect('absen:login')
 
     #lempar data yang sudah didapat ke templates
+    aktf = request.user.is_active
+    print(aktf)
     context = { 
         'profile':ab,
         'datas':data,

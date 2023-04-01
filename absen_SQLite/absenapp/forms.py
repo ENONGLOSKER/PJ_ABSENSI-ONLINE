@@ -50,7 +50,6 @@ class absenForm(forms.ModelForm):
         widgets={
             'pegawai':forms.Select(
                 attrs={
-                    'value':'{{user}}',
                     'class':'form-control',}
                 ),
             'status':forms.Select(

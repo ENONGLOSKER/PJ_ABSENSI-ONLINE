@@ -33,4 +33,4 @@ class absenModel(models.Model):
     ket         =models.TextField(null=True, blank=True) 
 
     def __str__(self):
-        return "{},{}".format(self.pegawai,self.status)
+        return "{}".format(self.pegawai)
