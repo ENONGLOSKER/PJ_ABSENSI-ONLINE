@@ -12,7 +12,10 @@ Instalasi Absensi Online
 8. jalankan project dengan cara: python manage.py runserver
 9. beres
 
-- untuk testing sebagai user/karyawan bisa langsung register -> login -> isi profile -> absen
+- untuk testing sebagai user/karyawan meggunakan
+username : karyawan
+password : karyawan123
+
 - untuk login sebagai admin bisa menggunakan 
 username : ruswanti
 password : admin132

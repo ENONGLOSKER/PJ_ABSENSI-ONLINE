@@ -43,15 +43,15 @@ class absenForm(forms.ModelForm):
     class Meta:
         model = absenModel
         fields = [
-                'pegawai',
+                # 'pegawai',
                 'status',
                 'ket',      
             ]
         widgets={
-            'pegawai':forms.Select(
-                attrs={
-                    'class':'form-control',}
-                ),
+            # 'pegawai':forms.TextInput(
+            #     attrs={
+            #         'class':'form-control',}
+            #     ),
             'status':forms.Select(
                 attrs={
                     'class':'form-control',}
